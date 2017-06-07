@@ -4,7 +4,7 @@
     <div id="header">
       <md-toolbar>
         <h1 class="md-title">数式パーサー</h1>
-        <md-button class="md-raised execButton" v-on:click.native="greet(event)" >実行</md-button>
+        <md-button class="md-raised execButton" v-on:click.native="exec(event)" >実行</md-button>
       </md-toolbar>
     </div>
 
@@ -33,7 +33,7 @@ export default {
     }
   },
   methods: {
-    greet: function (event) {
+    exec: function (event) {
       var formData = new FormData()
       formData.append('input', this.input)
       this.$http.post(URL.PARSE_URL, formData).then(response => {
@@ -59,6 +59,7 @@ p {
 .myEdit {
   width: 95%;
   margin: 0px 0px 0px 15px;
+  font-family: MS PGothic, Osaka, Arial, sans-serif;
 }
 
 .md-raised {

@@ -8,45 +8,45 @@ class ExprFormatter {
   private def format(e: Expression, enclPrec: Int): Element =
     e match {
       case Value(num) =>
-        elem(" " + num.toString + " ")
+        elem("  " + num.toString + "  ")
       case Add(x, y) =>
         val l = format(x, fractionPrecedence)
-        val op = elem("+")
+        val op = elem(" + ")
         val r = format(y, fractionPrecedence)
         l beside op beside r
       case Sub(exp1, exp2) =>
         val l = format(exp1, fractionPrecedence)
-        val op = elem("-")
+        val op = elem(" - ")
         val r = format(exp2, fractionPrecedence)
         l beside op beside r
       case Plus(exp) =>
-        val op = elem("+")
+        val op = elem(" + ")
         val ex = format(exp, fractionPrecedence)
         op beside ex
       case Minus(exp) =>
-        val op = elem("-")
+        val op = elem(" - ")
         val ex = format(exp, fractionPrecedence)
         op beside ex
       case Parenthesized(exp) =>
-        val l = elem("(")
+        val l = elem("( ")
         val ex = format(exp)
-        val r = elem(")")
+        val r = elem(" )")
         l beside ex beside r
       case Multiply(exp1, exp2) =>
         val l = format(exp1, fractionPrecedence)
-        val op = elem("x")
+        val op = elem(" x ")
         val r = format(exp2, fractionPrecedence)
         l beside op beside r
       case Divide(exp1, exp2) =>
         val top = format(exp1, fractionPrecedence)
         val bot = format(exp2, fractionPrecedence)
-        val line = elem('-', top.width max bot.width, 1)
+        val line = elem('-', (top.width) max (bot.width ), 1)
         val frac = top above line above bot
         if (enclPrec != fractionPrecedence) frac
         else frac
       case ExecResult(exp, result) =>
         val e = format(exp, fractionPrecedence)
-        val eq = elem("=")
+        val eq = elem(" = ")
         val r = format(result, fractionPrecedence)
         e beside eq beside r
     }

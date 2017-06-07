@@ -60,5 +60,5 @@ abstract class Element {
       val bot = elem(' ', width, h - height - top.height)
       top above this above bot
     }
-  override def toString = contents mkString "\n"
+  override def toString = contents mkString "\r\n"
 }
